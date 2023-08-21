@@ -39,7 +39,7 @@ while (respuesta != "FIN" && respuesta != "fin"){
     respuesta = prompt("Si desea calcular el precio de su estadía, ingrese SEGUIR; o ingrese FIN para salir")
     if (respuesta == "SEGUIR" || respuesta == "Seguir" || respuesta == "seguir"){
         habitacion = prompt("Elija el tipo de habitación: simple, triple o familiar.")
-        noches = prompt("Ingrese la cantidad de noches de su estadía.")
+        noches = prompt("Ingrese, en números, la cantidad de noches de su estadía.")
         let precio_final = calcular_estadia( habitacion , noches)
 
         console.log("Usted ha elegido la habitación", habitacion, "por", noches, "noches.")
