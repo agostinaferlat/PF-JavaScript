@@ -1,0 +1,103 @@
+
+.img_size{
+    width: 80px;
+    height: 90px;
+}
+
+td{
+    height: 50px;
+    background-color: #eaf4d2 !important;
+}
+
+table{
+    background-color: #eaf4d2;
+}
+
+h4{
+    text-align: center;
+    font-weight: bold;
+}
+
+#carrito{
+    width: 35%;
+    height: fit-content;
+}
+
+#listaProductos{
+    width: 65%;
+}
+
+#contenedorPadre{
+    display: flex;
+}
+
+.estiloHeader{
+    background-color: #A43D65;
+}
+
+nav{
+    background-color:#efc77c;
+    margin-bottom: 40px;
+}
+
+.navStyle{
+    list-style-type: none;
+    text-transform: uppercase;
+}
+
+
+.div{
+    margin-bottom: 20px;
+}
+
+.centered{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.card_size{
+    height: 375px;
+    width: 210px;
+}
+
+.nombre{
+    font-size: 15px;
+}
+
+.btnComprar {
+    background-color: #c26eae;
+    color: black;
+    padding: 8px 16px;
+    margin: 4px 2px;
+}
+
+.btnComprar:hover {
+    background-color: #c472b1a2;
+    color: black;
+}
+ 
+.totalEstilo{
+    font-weight: bold;
+    font-size: 20px;
+    margin-left: 5px;
+
+}
+
+.buttonStyle{
+    margin-top: 8px;
+    justify-content: center;
+    background-color: #530852;
+    color: white;
+}
+
+.buttonStyle:hover {
+    background-color: #53085286;
+    color: black;
+}
+
+.carritoVacioStyle{
+    margin-top: 45px;
+    font-weight: bold;
+}
