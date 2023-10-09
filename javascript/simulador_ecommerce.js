@@ -222,8 +222,6 @@ function vaciarCarrito (){
 
 
 
-//Eventos
-
 
 let buttonComprar = document.getElementsByClassName("btnComprar");
 
