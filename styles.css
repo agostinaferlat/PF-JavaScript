@@ -1,7 +1,33 @@
 
+h1, h2, main{
+    font-family: 'Montserrat', sans-serif
+}
+
+nav{
+    font-family: 'Montserrat', sans-serif;
+    font-style: italic;
+}
+
+.icon_weather{
+    width: 30px;
+}
+
+.style_weather{
+    font-weight: bold;
+}
+
 .img_size{
     width: 80px;
     height: 90px;
+}
+
+.divLogo{
+    display: inline-flex
+
+}
+
+.imagen_logo{
+    width: 150px;
 }
 
 td{
@@ -32,12 +58,17 @@ h4{
 }
 
 .estiloHeader{
-    background-color: #A43D65;
+    background-color: #FFDFB2;
 }
 
 nav{
-    background-color:#efc77c;
+    background-color:#D8CDE8;
     margin-bottom: 40px;
+    height: 50px;
+}
+
+.divClima{
+    align-items: flex-start;
 }
 
 .navStyle{
@@ -67,7 +98,7 @@ nav{
 }
 
 .btnComprar {
-    background-color: #c26eae;
+    background-color: #E5CDE8;
     color: black;
     padding: 8px 16px;
     margin: 4px 2px;
@@ -88,8 +119,8 @@ nav{
 .buttonStyle{
     margin-top: 8px;
     justify-content: center;
-    background-color: #530852;
-    color: white;
+    background-color: #D8CDE8;
+    color: black;
 }
 
 .buttonStyle:hover {
@@ -100,4 +131,46 @@ nav{
 .carritoVacioStyle{
     margin-top: 45px;
     font-weight: bold;
+}
+
+.animate__fadeIn {
+    display: inline-block;
+    margin: 0 0.5rem;
+  
+    animation: fadeIn;
+    animation-duration: 3s; 
+}
+
+footer{
+    background-color:#FFDFB2;
+    background-image:url("./img/pawscolores-removebg-preview.png");
+}
+
+.color_bg{
+    background-color:#FFDFB2;
+}
+
+.consetra, .centered-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.centered-links {
+    justify-content: center;
+    margin-bottom: 0px;
+}
+
+.consetra {
+    justify-content: center;
+    align-self: start;
+    text-align: start;
+}
+
+.icon-link {
+    width: 20px;
+    margin-bottom: 8px;
+    margin-top: 5px;
+    margin-right: 8px;
+    margin-left: 8px;
 }

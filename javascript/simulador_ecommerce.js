@@ -1,4 +1,4 @@
-let carrito = [];
+let carrito = JSON.parse(localStorage.getItem("Carrito")) || [];
 
 function agregarCarrito(e){
 
@@ -11,15 +11,25 @@ function agregarCarrito(e){
     let nombreProducto = padre.querySelector("h5").innerText;
     let precioProducto = padre.querySelector("span").innerText;
     let imagenProducto = abuelo.querySelector("img").src;
-    
-    let Producto = {
-        nombre: nombreProducto,
-        precio: precioProducto,
-        imagen: imagenProducto,
-        cantidad: 1
-    }
 
-    carrito.push(Producto);
+    let productoExistente = carrito.find (item => item.nombre === nombreProducto);
+
+    if(productoExistente){
+        productoExistente.cantidad += 1;
+    } else{
+
+        let Producto = {
+            nombre: nombreProducto,
+            precio: precioProducto,
+            imagen: imagenProducto,
+            cantidad: 1
+        }
+    
+        carrito.push(Producto);
+
+    }
+    
+    
 
     Toastify({
 
@@ -71,8 +81,23 @@ function mostrarCarrito(){
 
     }
 
+    if (carrito.length > 0){
+        let total = calcularTotalCompra();
+        let totalElemento = document.getElementById ("tbodyResultado");
+        totalElemento.textContent = `Total $${total}`;
+    }    
 
+}
 
+function calcularTotalCompra(){
+    let total = 0;
+
+    for(let Producto of carrito){
+        total += parseInt(Producto.precio) * Producto.cantidad;
+    }
+    return total;
+
+    
 }
 
 
@@ -84,7 +109,19 @@ function borrarProducto(e){
 
     let productoEliminado = abuelo.querySelector("p").innerText;
 
-    abuelo.remove();
+    for(let i = 0; i < carrito.length; i++){
+        if(carrito[i].nombre === productoEliminado){
+            if(carrito[i].cantidad > 1){
+               carrito[i].cantidad -= 1;
+               abuelo.querySelector("td:nth-child(3)").textContent = carrito[i].cantidad;
+            } else{
+                carrito.splice(i,1);
+                abuelo.remove();
+            }
+            break
+        }
+    }
+
 
     Toastify({
 
@@ -100,69 +137,87 @@ function borrarProducto(e){
     }).showToast();
 
 
-    function eliminarProducto(Producto){
+
+    let total = calcularTotalCompra();
         
-        return Producto.nombre != productoEliminado
-    }
-
-    let resultadoFilter = carrito.filter(eliminarProducto);
-    carrito = resultadoFilter
-
-
-    function eliminarProductoLS(Producto){
-        
-        return Producto.nombre != productoEliminado
+    let totalElemento = document.getElementById("tbodyResultado");
+    
+    if(carrito.length > 0){
+        totalElemento.textContent = `Total $${total}`;
+    } else {
+        totalElemento.textContent = ``;
     }
 
     
-    let carritoParseado = JSON.parse(localStorage.getItem("Carrito"));
-    console.log(carritoParseado);
+    localStorage.setItem("Carrito",JSON.stringify(carrito));
 
-    let resultadoFilterLS = carritoParseado.filter(eliminarProductoLS)
-
-    console.log(resultadoFilterLS);
-
-    let nuevoCarritoLS = JSON.stringify(resultadoFilterLS);
-    localStorage.setItem ("Carrito", nuevoCarritoLS);
+    if(carrito.length == 0){
+        localStorage.clear();
+    }
 
 }
 
 
 function finalizarCompra(){
 
-    
-    function totalCompra (acu, Producto){
-        acu = acu + parseInt(Producto.precio);
-        return acu;
+    let total = calcularTotalCompra();
+    carrito.splice(0,carrito.length);
+    mostrarCarrito();
+
+    if(total > 0){
+        Swal.fire({
+        icon: 'success',
+        title: `Compra realizada! Total $${total}`,
+        showConfirmButton: true,
+        })
+
+        let totalElemento = document.getElementById("tbodyResultado");
+        totalElemento.textContent = ``;
+        localStorage.clear();
+    } else{
+        Swal.fire({
+        icon: 'error',
+        title: `No hay productos añadidos al carrito`,
+        showConfirmButton: true,
+        })
     }
     
-    
-    
-    let compraFinal = carrito.reduce (totalCompra, 0);
-       
-    
-    let tabla = document.getElementById("tbodyResultado");
-
-    tabla.innerHTML = "";
-
-
-    let fila = document.createElement("tr");
-    fila.innerHTML = `<td><p class="row totalEstilo">Total</p></td>
-                      <td><p class="totalEstilo">$${compraFinal}</p></td>`;
-    tabla.append(fila);
-
     
 }
 
 
 function vaciarCarrito (){
+   
+    if( localStorage.length >= 1){
+        let vaciar_carrito = document.getElementById ("carrito")
+
+        carrito = [];
+        localStorage.clear();
+        let total = calcularTotalCompra();
+        let totalElemento = document.getElementById("tbodyResultado");
+        totalElemento.textContent = "";
+        mostrarCarrito();
+
+        Toastify({
+
+            text: `Carrito vaciado!`,
+            duration: 2000,
+            gravity: "bottom",
+            position: "right",
+            stopOnFocus: true,
+            style: {
+                background: "linear-gradient(to right, #e38e20, #f55683)",
+            },
     
-    let vaciar_carrito = document.getElementById ("carrito")
-    
-    vaciar_carrito.innerHTML = `<p class="carritoVacioStyle">Carrito vacío!</p> 
-                                <a href = "index.html">Volver a cargar productos</a>`;
-    
-    localStorage.clear ();
+        }).showToast();
+
+    }else{
+        Swal.fire({
+        icon: 'error',
+        title: `No hay productos añadidos al carrito`,
+        showConfirmButton: true,
+        })
+    }    
 }
 
 
@@ -172,7 +227,6 @@ function vaciarCarrito (){
 
 let buttonComprar = document.getElementsByClassName("btnComprar");
 
-console.log(buttonComprar);
 
 
 for (let button of buttonComprar){
@@ -188,3 +242,33 @@ btnFinalizarCompra.addEventListener ("click", finalizarCompra);
 let btnVaciarCarrito = document.getElementById ("boton_vaciar");
 
 btnVaciarCarrito.addEventListener ("click", vaciarCarrito);
+
+
+mostrarCarrito();
+ 
+
+function verClima(posicion){
+
+    let latitude = posicion.coords.latitude;
+    let longitude = posicion.coords.longitude;
+
+    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=b4390fb235b80d94dba55e0d80225f3c&units=metric&lang=es`)
+    .then((response) => response.json())
+    .then(data => {
+
+        let climaUbicacion = document.getElementById("barraNav");
+
+        let climaUbi = document.createElement("div");
+
+        climaUbi.innerHTML = `<span>Usted nos visita desde: ${data.name}</span>
+                              <img class="icon_weather" src="http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="icon weather">
+                              <span class="style_weather">${data.main.temp.toFixed(1)}°C</span>`
+
+        climaUbicacion.append(climaUbi);
+
+    })
+
+
+}
+
+navigator.geolocation.getCurrentPosition(verClima);

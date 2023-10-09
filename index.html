@@ -3,32 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Huellas en Manada</title>
-
+   
+    <meta name="description" content="Huellas en Manada es tu mejor opción en artículos para tus mascotas.">
+    <meta name="keywords" content="gato, perro, petshop, lickimat, fuente de agua, rascador, villa crespo, mascotas, huellas en manada, caba, capital">
+    
+    <link rel="icon" href="./img/iconuno-round.png">
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    
     <link rel="stylesheet" href="styles.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Montserrat:ital,wght@0,500;1,500&family=Nunito+Sans&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
 
     <header class="container-fluid estiloHeader">
-        <div class="row justify-content-center">
-            <h1 class="col-lg-10 text-center fw-bold m-1 p-2"> Huellas en Manada </h2>
-            <h3 class="col-lg-8 text-center m-1 p-2"> La mejor opción en artículos para tus mascotas</h3>
+        <div class="divLogo">
+            <a href="index.html">
+                <img class="imagen_logo m-3" src="img/iconuno-round.png" alt="logo tienda">
+            </a>
+        </div>
+
+        <div class="row divLogo">
+            <h1 class="col-lg-10 text-start fw-bold m-1 p-1 animate__animated animate__lightSpeedInLeft"> Huellas en Manada </h2>
+            <h3 class="col-lg-8 text-start m-1 p-1 animate__animated animate__fadeIn"> La mejor opción en artículos para tus mascotas</h3>
         </div>
 
         <nav class="row navbar">
-            <ul>
-                <li class="nav-item navStyle"><a class="nav-link" href="home.html">Nuestros productos</a></li>
-            </ul>
+            <div id="barraNav" class="text-end divClima"></div>
+
         </nav>
     </header>
 
     <main>
 
         <div id="contenedorPadre">
+
            <!-- Sección Productos -->
             <section class="container" id="listaProductos"> 
                     
@@ -144,9 +164,47 @@
 
 
     </main>
+
+    <footer class="p-5 mt-4"> 
+        
+        <div class="container-fluid">
+            <div class="row align-items-center color_bg">
+                
+                <div class="col-lg-4 d-none d-lg-block consetra pt-3 pb-3">
+                    <h6 class="text-center fw-bold">Contacto</h6>
+
+                    <p  class="text-center">Vera 458 - 4654-7583</p>
+                    <a class="nav-link link-trabaja-f centered-links" href="mailto:info@huellasenmanada.com">info@huellasenmanada.com</a>
+                </div>
+    
+                <div class="col-lg-4 d-none d-lg-block consetra pt-3 pb-3"> 
+                    <h6 class="text-center fw-bold">Seguinos</h6>
+
+                    <div class="centered-links"> 
+                        <a href="https://www.instagram.com/" target="_blank"> 
+                            <img class="icon-link" src="./img/instagram2.png" alt="icono instagram">
+                        </a>
+                                    
+                        <a href="https://www.facebook.com/" target="_blank">
+                            <img class="icon-link" src="./img/facebook3.png" alt="icono facebook">     
+                        </a>
+                    </div>
+
+                </div>
+                <div class="col-lg-4 d-none d-lg-block consetra pt-3 pb-3">
+                    <h6 class="text-center fw-bold">Trabajá con nosotros</h6>
+
+                    <p class="text-center">Escribinos a</p>
+                    <a class="nav-link link-trabaja-f centered-links" href="mailto:rrhh@huellasenmanada.com">rrhh@huellasenmanada.com</a> 
+                </div>
+        </div>  
+        
+    </footer>    
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>    
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./javascript/simulador_ecommerce.js"></script>
+
 </body>
 </html>
